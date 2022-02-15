@@ -17,9 +17,8 @@ const productoSchema = Schema({
         type: Number,
         default: 0
     },
-    stock:{
-        type: Number,
-        default:0
+    talla:{
+        type: Array        
     },
     categoria:{
         type: Schema.Types.ObjectId,
@@ -28,6 +27,10 @@ const productoSchema = Schema({
     },
     img:{type: Array},
     estado:{type: Boolean, default: true},
+    genero:{type:Array},
+    tipo:{type: Schema.Types.ObjectId,
+        ref:'Categoria'},
+    color:{type:Array}
 
 
 });

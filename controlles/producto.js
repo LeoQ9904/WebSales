@@ -8,7 +8,7 @@ const { Producto } = require('../models');
 
 
 const postProducto = async (req,res) =>{
-    let {nombre,descripcion,precio,descuento,stock,categoria} = req.body;  
+    let {nombre,descripcion,precio,descuento,talla,categoria,genero,tipo,color} = req.body;  
     nombre = nombre.toLowerCase().replace(/\b[a-z]/g, c => c.toUpperCase()); 
     
     const data = {
@@ -16,9 +16,11 @@ const postProducto = async (req,res) =>{
         descripcion,
         precio,
         descuento,
-        stock,
-        categoria
-        
+        talla,
+        categoria,
+        genero,
+        tipo,
+        color
     }
 
     const producto = new Producto(data);
