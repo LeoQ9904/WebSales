@@ -7,19 +7,21 @@ const { validaJWT, validaRol } = require('../middleware/validar-jwt');
 
 const router = Router();
 
-router.get('/',getProductos)
+router.get('/:genero',getProductos)
 
 router.post('/',[
     validaJWT,
     validaRol('ADMIN_ROL'),
     check('nombre','El nombre es obligatorio').notEmpty(),
-    check('nombre','No debe contener más de 30 caracteres').isLength({max:30}),
+    check('nombre','No debe contener más de 50 caracteres').isLength({max:50}),
     check('descripcion','La descripción es obligatoria').notEmpty(),
     check('categoria','La categoria es obligatoria').notEmpty(),
     check('categoria','La categoria no es valida').isMongoId(),
+    check('genero','El genero no es valida').isMongoId(),
     check(['precio','descuento','stock'],'Debe que ser un dato númerico').optional().isNumeric(),
     check('descuento','No puede tener más del 90% de descuento').isLength({max:2}),
     check('categoria').custom(validaId),
+    check('genero').custom(validaId),
     validarCampos
 ],postProducto)
 router.put('/:id',[

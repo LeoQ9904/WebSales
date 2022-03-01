@@ -4,7 +4,8 @@ const fs   = require('fs');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config(process.env.CLOUDINARY_URL);
 
-const { Producto } = require('../models');
+const { Producto, Genero, Categoria } = require('../models');
+const { request } = require('http');
 
 
 const postProducto = async (req,res) =>{
@@ -32,8 +33,44 @@ const postProducto = async (req,res) =>{
     })
 }
 const getProductos = async (req,res) => {
-    const productos = await Producto.find({estado:true})
+    // tipo = a si la consulta toma todos los datos lo desea realizar filtros
+    //tipo = filtro, no hacer consulta con filtros, all de lo contrario
+    let {genero}=req.params;    
+    let cate = req.query.cate;
+
+    console.log(req.query)
+
+    let productos = []
+    let productosprev = await Producto.find({estado:true})
+        .populate('genero','nombre')   
         .populate('categoria','nombre');
+        productos = productosprev;
+    switch (genero) {
+        case 'all':            
+            break;        
+        default:
+            productos=[];
+            productosprev.forEach(produc => {
+                if(produc.genero.nombre == genero){
+                    productos.push(produc)
+                }
+            });    
+            productosprev = [];
+            productosprev = productos;                  
+            break;
+    }    
+    switch (cate) {
+        case 'all':            
+            break;        
+        default:
+            productos = []
+            productosprev.forEach(produc => {
+                if(produc.categoria.nombre == cate){
+                    productos.push(produc)
+                }
+            });                 
+            break;
+    }
     res.status(200).json({
         info:'Listado de productos',
         productos
@@ -41,7 +78,7 @@ const getProductos = async (req,res) => {
 }
 const putProducto = async (req,res)=>{
     const {id}=req.params;
-    let {nombre,descripcion,precio,descuento,stock,categoria,img} = req.body;
+    let {nombre,descripcion,precio,descuento,stock,categoria,img,genero} = req.body;
     (nombre)?nombre=nombre.toLowerCase().replace(/\b[a-z]/g, c => c.toUpperCase()):nombre
     const data = {
         nombre,
@@ -50,7 +87,8 @@ const putProducto = async (req,res)=>{
         descuento,
         stock,
         categoria,
-        img
+        img,
+        genero
     }
     const producto = await Producto.findByIdAndUpdate(id,data);
     res.json({

@@ -11,11 +11,13 @@ class server {
         this.port = process.env.PORT;
 
         this.rutas= {
-            usuario:'/api/usuario',
+            auth: '/api/auth',
             categoria: '/api/categoria',
             canasta: '/api/canasta',
+            genero: '/api/genero',
             producto: '/api/producto',
-            auth: '/api/auth'
+            usuario:'/api/usuario',
+            getdatos:'/api/getdatos',
         }
 
         this.coneccionDB();
@@ -42,11 +44,13 @@ class server {
     }
 
     routes(){
-        this.app.use(this.rutas.usuario, require('../routes/usuario'));
+        this.app.use(this.rutas.auth, require('../routes/auth'));
         this.app.use(this.rutas.categoria, require('../routes/categoria'));
         this.app.use(this.rutas.canasta, require('../routes/canasta'));
+        this.app.use(this.rutas.genero, require('../routes/genero'));
         this.app.use(this.rutas.producto, require('../routes/producto'));
-        this.app.use(this.rutas.auth, require('../routes/auth'));
+        this.app.use(this.rutas.usuario, require('../routes/usuario'));
+        this.app.use(this.rutas.getdatos, require('../routes/getDatos'));
     }
 
     listen(){
