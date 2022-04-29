@@ -38,8 +38,6 @@ const getProductos = async (req,res) => {
     let {genero}=req.params;    
     let cate = req.query.cate;
 
-    console.log(req.query)
-
     let productos = []
     let productosprev = await Producto.find({estado:true})
         .populate('genero','nombre')   
@@ -74,6 +72,15 @@ const getProductos = async (req,res) => {
     res.status(200).json({
         info:'Listado de productos',
         productos
+    })
+}
+const getProducto = async (req,res)=>{
+    const producto = await Producto.findById(req.params.id)
+    .populate('genero','nombre')   
+        .populate('categoria','nombre');
+    res.status(200).json({
+        info:'Informacion relacionada al id de producto',
+        producto
     })
 }
 const putProducto = async (req,res)=>{
@@ -134,6 +141,7 @@ const putImgProducto = async(req, res = response ) => {
 module.exports={
     postProducto,
     getProductos,
+    getProducto,
     putProducto,
     deleteProducto,
     putImgProducto

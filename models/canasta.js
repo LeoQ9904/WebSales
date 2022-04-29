@@ -4,16 +4,19 @@ const canastaSchema = Schema({
     usuario:{
         type: Schema.Types.ObjectId,
         ref:'Usuario',
-        require: true
+        default: '61ffe9d18bb58e0286079926'
     },
     producto:{
         type: Schema.Types.ObjectId,
         ref:'Producto',
         require: true
     },
-    cantidad:{
-        type:Number,
-        default: 1
+    tallaCnt:{
+        type:Array,
+        default: {
+            nombre:"NAN",
+            cnt:1
+        }
     },
     estado:{
         type: Boolean,
