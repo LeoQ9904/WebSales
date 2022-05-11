@@ -9,21 +9,21 @@ const { validaJWT, validaRol } = require('../middleware/validar-jwt');
 const router = Router();
 
 //sin validacion de JWT
-router.post('/',postCanasta); 
-router.get('/',getCanasta);
+// router.post('/',postCanasta); 
+// router.get('/',getCanasta);
 
 //con validacion de JWT
-// router.post('/',[
-//     validaJWT,
-//     validaRol('USER_ROL'),
-//     validarCampos
-// ],postCanasta);
+router.post('/',[
+    validaJWT,
+    validaRol('USER_ROL'),
+    validarCampos
+],postCanasta);
 
-// router.get('/',[
-//     validaJWT,
-//     validaRol('USER_ROL'),
-//     validarCampos
-// ],getCanasta);
+router.get('/',[
+    validaJWT,
+    validaRol('USER_ROL'),
+    validarCampos
+],getCanasta);
 
 router.delete('/:id',deleteCanasta);
 
