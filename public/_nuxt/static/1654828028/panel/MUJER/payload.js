@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/panel/MUJER", (function(a,b){return {data:[{}],fetch:{"0":{postoken:"false",productos:null,catego:["all"],estadocatego:[a],fav:a,menu:false}},mutations:[["getMCar",[{uid:"xx",avatar:"no  img",title:"Not product",subtitle:["Nan",b],priceHtml:"0"}]],["getMPrecioDataCar",b]]}}(true,0)));
