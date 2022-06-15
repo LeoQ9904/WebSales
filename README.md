@@ -1,56 +1,42 @@
-####    PROYECTO: Web Sales. 
+##    PROYECTO: PAGINA WEB PARA LA COMPRA DE PRODUCTOS. 
+#### Jorge Leonardo Quintero
+#### cel: 3167285051
+#### correo: jquinteroquintero04@gmail.com
+***
 
-# Esta es la parte del backend.
+Proyecto web creado con la finalidad de reforzar conocimientos en las diferentes tecnologías a utilizar, pero también pensado con algún día monetizarlo de alguna manera, por tal razón se  ha tratado de utilizar un modelo de trabajo un tanto globalizado. 
 
-¡¡Pasos!!
+La idea del proyecto la dividí en dos partes principales, la primera, montar todo lo que tiene que ver con el BackEnd y después realizar el FrontEnd.
 
-1. Crear crud para producto, categoria, usuario, canasta, venta.
-    1.1. categoria:
-            Contiene el #nombre el cual debe que pasar por oblicatorio, y debe que guardarse con la primera letra en mayuscula y debe contener no mas de 15 caracteres. 
-            Contine el #descripcion, debe que ser obligatorio pero no contiene mayor restrinción
-            #estado, es booleano, por defaul true para saber que no se ha eliminado.            
-    1.2. producto:
-            Es derivado de categoria, se debe que crear primero las categorias para que los productos puedan existir. 
-            #nombre es obligaotrio, no debe que contener más de 30 caracteres.
-            #descripcion es obligatoria, no tiene mayor restricción.
-            #precio no es obligatorio, se imprime por default 0. 
-            #stock no es obligatorio, se imprime por default 0.
-            #img es un string, el cual muestra la dirección donde se va a almacenar, las imagenes se van a almacenar en cloudinary. 
-            #estado, es booleano, por defaul true para saber que no se ha eliminado.
-            $descunto no es obligatorio, se imprime por default 0.
-            $impuestos no es obligatorio, se imprime por default 0.
-    1.3. usuario: 
-            #nombre de typo string, se aloja el nombre completo del usurio.
-            #correo de typo String, se valida por medio de express-validator si es email, es        obligatorio y unico entro los usuarios
-            #telefono es obligatorio y unico entre los usurios, de typo string. 
-            #estado, es booleano, por defaul true para saber que no se ha eliminado.
-            #rol es de typo Strign, por default todos son USUARIO_ROL
-    1.4 canasta:
-            Esta aloja la selección que realice el usuario, cuando el usuario decida realizar la compra, se elimina de db cualquier registro del usario en esta tabla.  
-            #usuarioID de typo Schema.type.ObjectId, para relacionar al usuario que lecciono el procuto.
-            #productoID un objeto que contiene objetos con id de productos y cantidad de producto
-            #cantidad de typo Number, para saber cuantas cantidades selecciono el usuario, por defaul se crea con 1 unidad, pero esta cantidad no debe que ser superior a la que se tiene en el stock del producto.  
-    1.5 venta:
-            Esto refleja las ventas que se han realizado, cuando el usuario realice una compra,serefleja una nueva venta, el usuario al realizar esta acción, los prouctos que se carguen a este venta se les debe que descontar la cantidad del estock. 
-            #usuarioID de typo Schema.type.ObjectId, para relacionar al usuario que lecciono el #productoID un objeto que contiene objetos con id de productos y cantidad de producto
+### BackEnd
+El servidor se realizó en entorno Node.js y Express, la estructura principal del servidor es de modelo - controlador con sus respectivos enlaces de rutas, de middleware y como es una API se crea una carpeta pública en la cual se aloja todo el FrontEnd. 
+Para alojar los datos cree una base de datos en MongoDB y la conecto por medio de la librería mongoose, para los archivos multimedia se alojaron en Cloudinary, con la finalidad de no recargar el servidor de archivos. 
+Como la idea es crear un proyecto que cuente con estándares de seguridad y confianza para el cliente, los datos sensibles, como contraseñas se guardan encriptadas en la DB utilizando la librería Bcrytjs, por otra parte, para que el sistema valide la información del usuario, categoría, rol, si es un usuario válido para realizar las diferentes actividades se hace utilizando los JsonWebTokens con clave única. 
 
-            
-2. Realizar control de acceso, resticciones para la creación de: producto, categoria
-    Los usuarios de rol ADMIN_ROL son los que pueden realizar estas peticiones, seria para obsolutamente todo, menos para la consulta de productos, y añadir los productos a la canasta y la realización de la compra. Estas acciónes las debe que realiar un usuario verificado por medio de un token de JWK. 
+***
+### FrontEnd 
+La parte visible para el cliente la realice con NuxtJs, y hice la conexión con la API por medio de Axios, trate de utilizar todas las ventajas de VueJs posibles, utilice componentes en diferentes vistas y en diferentes componentes, la reactividad y las variables globales con Vuex.
+El diseño se realizó lo más simple posible utilizando colores oscuros y claros tratando de que la página sea lo más neutra posible. Para que el desarrollo de está fuera lo más rápida posible se utilizó Vuetify el cual nos genera componentes, Estilos y Animaciones listas para implementar. 
 
-    Realizar la implementación de middlewares para la autenticación, la validacion tambien se realiza por medio de check, y con funciones propias pasadas por costum. 
+***
+### Próximos pasos: 
+ * Habilitar el registro y el inicio de sesión de cualquier correo - usuario
+ * Habilitar el registro y el inicio de sesión utilizando google y facebook
+ * Habilitar la actualización de datos por parte de cada usuario 
+ * Finalizar compra, que el usuario pueda finalizar el pedido solicitado en el carrito de compra. 
+ * Descontar productos del stock, cuando el usuario finalice una compra, que el sistema descuente de su stock la totalidad de cada producto. 
+ * Poder visualizar disponibilidad de producto, cantidad en stock disponibles para la compra. 
 
-3. Hacer cargo de información a la base de datos. 
+***
 
-
-4. Habilitar las consultas, se debe que poder consultar productos por categoria y o nombre.  
-
-5. Hacer login de usuario. 
-
-6. Implementar la cominicación de client - server medianto los sockets, con el fin de tener una comunicación más interactiva con el usuario. 
-
-
-#   Objetivos
-
-Saber cuando parar: 
-    la idea es tener una plataforma para mostrar, realizar el trabajo hasta completar el proceso de la compra de los productos. 
+### Tecnologías utilizadas en el proyecto. 
+ * Node.js
+ * MongoDB
+ * Cloudinary
+ * Express
+ * JsonWebToken
+ * Bcrytjs
+ * Vue.js
+ * NuxtJs
+ * Vuetify
+ * Axios
