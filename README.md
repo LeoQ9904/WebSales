@@ -1,7 +1,8 @@
 ##    PROYECTO: PAGINA WEB PARA LA COMPRA DE PRODUCTOS. 
-#### Jorge Leonardo Quintero
+#### Jorge Leonardo Quintero Quintero
 #### cel: 3167285051
 #### correo: jquinteroquintero04@gmail.com
+#### https://drive.google.com/file/d/1ijq3vtgtjrr6HDFHPcn3AXHp-Nt4a8Uc/view?usp=sharing
 ***
 
 Proyecto web creado con la finalidad de reforzar conocimientos en las diferentes tecnologías a utilizar, pero también pensado con algún día monetizarlo de alguna manera, por tal razón se  ha tratado de utilizar un modelo de trabajo un tanto globalizado. 

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/fabricante", {data:[{}],fetch:{},mutations:[]});
